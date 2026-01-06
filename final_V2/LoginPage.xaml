@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="final_V2.LoginPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#000000">
+
+    <VerticalStackLayout Spacing="25" Padding="30" VerticalOptions="Center">
+        <Label Text="Reelsbox"
+               FontSize="48"
+               FontAttributes="Bold"
+               TextColor="#FFFFFF"
+               HorizontalOptions="Center" />
+
+        <Frame BackgroundColor="#121212" BorderColor="#333333" Padding="0" HasShadow="False" CornerRadius="8">
+            <Entry x:Name="UsernameEntry" 
+                   Placeholder="Instagram Kullanıcı Adı" 
+                   PlaceholderColor="#888888"
+                   TextColor="White"
+                   HeightRequest="50"
+                   Margin="10,0"/>
+        </Frame>
+
+        <Frame BackgroundColor="#121212" BorderColor="#333333" Padding="0" HasShadow="False" CornerRadius="8">
+            <Entry x:Name="PasswordEntry" 
+                   Placeholder="Şifre" 
+                   IsPassword="True"
+                   PlaceholderColor="#888888"
+                   TextColor="White"
+                   HeightRequest="50"
+                   Margin="10,0"/>
+        </Frame>
+
+        <Button Text="Giriş Yap"
+                Clicked="OnLoginClicked"
+                BackgroundColor="#E50914"
+                TextColor="White"
+                CornerRadius="8"
+                HeightRequest="50"
+                FontAttributes="Bold" />
+
+        <Button Text="Kayıt Ol"
+                Clicked="OnRegisterClicked"
+                BackgroundColor="Transparent"
+                TextColor="#888888"
+                FontSize="14" />
+    </VerticalStackLayout>
+
+</ContentPage>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="final_V2.AddReelPage"
+             Title="Yeni Reels Ekle"
+             BackgroundColor="#14181c">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="20">
+            <Label Text="Reels Bilgileri" FontSize="20" FontAttributes="Bold" TextColor="White"/>
+
+            <Frame BackgroundColor="#121212" BorderColor="#333333" Padding="0">
+                <Entry x:Name="NameEntry" Placeholder="Reels Başlığı" PlaceholderColor="#888888" TextColor="White" Margin="10,0"/>
+            </Frame>
+
+            <Frame BackgroundColor="#121212" BorderColor="#333333" Padding="0">
+                <Entry x:Name="LinkEntry" Placeholder="Reels Linki" PlaceholderColor="#888888" TextColor="White" Margin="10,0"/>
+            </Frame>
+
+            <Label Text="Puan" TextColor="White"/>
+            <Slider x:Name="RatingSlider" Minimum="1" Maximum="10" MinimumTrackColor="#00c02c" MaximumTrackColor="#333333"/>
+            <Label Text="{Binding Source={x:Reference RatingSlider}, Path=Value, StringFormat='{0:F0} / 10'}" 
+                   HorizontalOptions="Center" TextColor="#00c02c" FontAttributes="Bold"/>
+
+            <Frame BackgroundColor="#121212" BorderColor="#333333" Padding="0">
+                <Editor x:Name="CommentEditor" Placeholder="Yorumun..." PlaceholderColor="#888888" TextColor="White" HeightRequest="100" Margin="10,5"/>
+            </Frame>
+
+            <Button Text="Kütüphaneye Ekle" 
+                    Clicked="OnSaveClicked"
+                    BackgroundColor="#00c02c"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    HeightRequest="50"/>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

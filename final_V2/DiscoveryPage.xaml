@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="final_V2.DiscoveryPage"
+             Title="Keşfet"
+             BackgroundColor="#14181c">
+
+    <Grid RowDefinitions="Auto, *" Padding="15">
+        
+        <!-- Üst Kısım: Arama Çubuğu -->
+        <VerticalStackLayout Grid.Row="0" Spacing="10">
+            <Label Text="Keşfet" FontSize="28" FontAttributes="Bold" TextColor="White"/>
+            <SearchBar x:Name="UserSearchBar" 
+                       Placeholder="Kullanıcı ara..." 
+                       PlaceholderColor="#888888"
+                       TextColor="White"
+                       BackgroundColor="#2c3440"
+                       CancelButtonColor="White"
+                       SearchCommandParameter="{Binding Text, Source={x:Reference UserSearchBar}}"
+                       TextChanged="OnSearchTextChanged"/>
+        </VerticalStackLayout>
+
+        <ScrollView Grid.Row="1" Margin="0,10,0,0">
+            <VerticalStackLayout Spacing="20">
+                
+                <!-- Arama Sonuçları (Sadece arama yapıldığında görünür) -->
+                <VerticalStackLayout x:Name="SearchResultsSection" IsVisible="False" Spacing="10">
+                    <Label Text="Kullanıcılar" FontSize="18" FontAttributes="Bold" TextColor="#00c02c"/>
+                    <CollectionView x:Name="UsersCollection" SelectionMode="Single" SelectionChanged="OnUserSelected">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BackgroundColor="#2c3440" BorderColor="#333333" Margin="0,2" Padding="12">
+                                    <HorizontalStackLayout Spacing="15" VerticalOptions="Center">
+                                        <Border BackgroundColor="#444444" HeightRequest="40" WidthRequest="40" StrokeShape="RoundRectangle 20" StrokeThickness="0">
+                                            <Label Text="👤" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                        </Border>
+                                        <Label Text="{Binding Username}" TextColor="White" FontSize="16" VerticalOptions="Center"/>
+                                    </HorizontalStackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+
+                <!-- Arkadaş Aktivitesi -->
+                <VerticalStackLayout x:Name="ActivitySection" Spacing="15">
+                    <Label Text="Arkadaş Aktivitesi" FontSize="18" FontAttributes="Bold" TextColor="#00c02c"/>
+                    
+                    <CollectionView x:Name="ActivityCollection" SelectionMode="Single" SelectionChanged="OnActivitySelected">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BackgroundColor="#1e232b" BorderColor="#333333" Margin="0,5" Padding="10">
+                                    <VerticalStackLayout Spacing="8">
+                                        <HorizontalStackLayout Spacing="10">
+                                            <Label Text="👤" TextColor="#00c02c"/>
+                                            <Label TextColor="White" FontSize="14">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding Username}" FontAttributes="Bold"/>
+                                                        <Span Text=" yeni bir Reels yükledi: " TextColor="#888888"/>
+                                                        <Span Text="{Binding Name}" FontAttributes="Italic"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </HorizontalStackLayout>
+                                        
+                                        <!-- Reel Önizleme Kartı -->
+                                        <Border BackgroundColor="#2c3440" HeightRequest="150" StrokeShape="RoundRectangle 8" StrokeThickness="0">
+                                            <Grid>
+                                                <Label Text="🎬" FontSize="40" Opacity="0.3" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                                
+                                                <Image Source="{Binding ThumbnailUrl}" Aspect="AspectFill" HeightRequest="150" Opacity="0.8"/>
+
+                                                <Label Text="{Binding Rating}" TextColor="#00c02c" FontAttributes="Bold" VerticalOptions="End" HorizontalOptions="End" Margin="10" BackgroundColor="#80000000" Padding="5,2"/>
+                                                <Label Text="{Binding Comment}" TextColor="#ffffff" FontSize="12" Margin="10" VerticalOptions="Start" HorizontalOptions="Start" MaxLines="2" LineBreakMode="TailTruncation" BackgroundColor="#80000000" Padding="5,2"/>
+                                            </Grid>
+                                        </Border>
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <Label Text="Takip ettiğin kimse yok veya henüz aktivite yok." 
+                                   TextColor="#666666" HorizontalTextAlignment="Center" Margin="0,40"/>
+                        </CollectionView.EmptyView>
+                    </CollectionView>
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

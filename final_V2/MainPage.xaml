@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="final_V2.MainPage"
+             Title="Reels Arşivim"
+             BackgroundColor="#14181c">
+
+    <Grid RowDefinitions="*, Auto" Padding="10">
+        
+        <CollectionView Grid.Row="0" 
+                        x:Name="ReelsCollection"
+                        SelectionMode="Single"
+                        SelectionChanged="OnReelSelected">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="2" 
+                                  HorizontalItemSpacing="10" VerticalItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout Spacing="5">
+                        <Border BackgroundColor="#2c3440" 
+                                HeightRequest="180"
+                                StrokeShape="RoundRectangle 12"
+                                StrokeThickness="0">
+                            <Grid>
+                                <Label Text="🎬" 
+                                       FontSize="50"
+                                       VerticalOptions="Center" 
+                                       HorizontalOptions="Center" 
+                                       Opacity="0.5"/>
+                                
+                                <Image Source="{Binding ThumbnailUrl}"
+                                       Aspect="AspectFill"
+                                       HeightRequest="180"/>
+
+                                <Label Text="{Binding Rating}" 
+                                       VerticalOptions="End" 
+                                       HorizontalOptions="End" 
+                                       Margin="10"
+                                       TextColor="#00c02c"
+                                       FontAttributes="Bold"
+                                       FontSize="16"
+                                       BackgroundColor="#80000000"
+                                       Padding="5,2"/>
+                            </Grid>
+                        </Border>
+                        <Label Text="{Binding Name}" 
+                               TextColor="White" 
+                               FontSize="14"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center"
+                               LineBreakMode="TailTruncation"/>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
+            <CollectionView.EmptyView>
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10">
+                    <Label Text="Henüz hiç Reels eklemedin." 
+                           TextColor="#888888" 
+                           HorizontalOptions="Center"/>
+                    <Button Text="İlk Reels'ı Ekle" 
+                            Clicked="OnAddClicked"
+                            BackgroundColor="#00c02c"
+                            TextColor="White"/>
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+        </CollectionView>
+
+        <Button Grid.Row="1"
+                Text="+"
+                Clicked="OnAddClicked"
+                BackgroundColor="#00c02c"
+                TextColor="White"
+                FontSize="30"
+                HeightRequest="60"
+                WidthRequest="60"
+                CornerRadius="30"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                Margin="20"/>
+    </Grid>
+
+</ContentPage>

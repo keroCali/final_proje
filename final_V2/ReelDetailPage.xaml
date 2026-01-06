@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="final_V2.ReelDetailPage"
+             Title="Reels Detayı"
+             BackgroundColor="#14181c">
+
+    <VerticalStackLayout Spacing="20" Padding="20">
+        <Border BackgroundColor="#2c3440" HeightRequest="400" StrokeShape="RoundRectangle 12" StrokeThickness="0">
+            <Grid>
+                <!-- Fallback/Placeholder -->
+                <Label x:Name="PlaceholderLabel" Text="🎬" FontSize="80" VerticalOptions="Center" HorizontalOptions="Center" Opacity="0.5"/>
+                
+                <Image x:Name="ReelThumbnail" 
+                       Aspect="AspectFill"
+                       HeightRequest="400"
+                       WidthRequest="350"
+                       HorizontalOptions="Center"
+                       IsVisible="False"/>
+
+                <ActivityIndicator x:Name="LoadingIndicator" 
+                                   IsRunning="True" 
+                                   Color="#00c02c" 
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="Center"/>
+            </Grid>
+        </Border>
+
+        <Label x:Name="NameLabel" FontSize="28" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"/>
+        
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+            <Label Text="Puan:" TextColor="#888888" FontSize="18"/>
+            <Label x:Name="RatingLabel" TextColor="#00c02c" FontSize="18" FontAttributes="Bold"/>
+        </HorizontalStackLayout>
+
+        <Label Text="Yorum:" TextColor="#888888" FontSize="16"/>
+        <Frame BackgroundColor="#121212" BorderColor="#333333">
+            <Label x:Name="CommentLabel" TextColor="White" FontSize="16"/>
+        </Frame>
+
+        <Button x:Name="LinkButton" Text="Reels'ı İzle" 
+                Clicked="OnLinkClicked"
+                BackgroundColor="#00c02c"
+                TextColor="White"
+                CornerRadius="8"/>
+
+        <Label x:Name="AddedByLabel" TextColor="#555555" FontSize="12" HorizontalOptions="Center"/>
+    </VerticalStackLayout>
+</ContentPage>
